@@ -1,0 +1,74 @@
+[project]
+name = "vibe-trading-modified"
+version = "0.1.0"
+description = "A-share Deep Research Agent — AI-driven Chinese stock analysis with multi-agent swarm"
+requires-python = ">=3.12"
+license = "MIT"
+readme = "README.md"
+authors = [
+    {name = "zxw19"},
+]
+keywords = ["a-share", "china-stock", "research", "agent", "swarm", "deep-research"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+dependencies = [
+    "rich>=13.0.0",
+    "pyyaml>=6.0.0",
+    "langchain>=1.0.0",
+    "langchain-core>=1.0.0",
+    "langchain-openai>=1.0.0",
+    "python-dotenv>=1.0.0",
+    "httpx>=0.28.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+    "duckdb>=1.2.0",
+    "tushare>=1.2.89",
+    "requests>=2.31.0",
+    "yfinance>=0.2.30",
+    "akshare>=1.12.0",
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "pydantic>=2.0.0",
+    "python-multipart>=0.0.18",
+    "sse-starlette>=1.6.0",
+    "fastmcp>=2.14.0",
+    "jinja2>=3.1.0",
+    "prompt_toolkit>=3.0.0",
+    "peewee>=4.0.0",
+    "jsonpatch>=1.33",
+    "brotli>=1.2.0",
+]
+
+[project.urls]
+Repository = "https://github.com/zxw19/vibe-trading-modified"
+Issues = "https://github.com/zxw19/vibe-trading-modified/issues"
+
+[project.scripts]
+vibe-trading = "cli.main:main"
+vibe-trading-mcp = "mcp_server:main"
+
+[tool.setuptools]
+py-modules = ["api_server", "mcp_server", "run"]
+
+[tool.setuptools.packages.find]
+include = ["src*", "backtest*", "cli*", "skills*"]
+
+[tool.setuptools.package-data]
+"src" = [
+    "swarm/presets/*.yaml",
+    "providers/*.json",
+    "shadow_account/templates/*.j2",
+    "shadow_account/templates/*.html",
+    "shadow_account/templates/*.css",
+]
+"skills" = ["user/**/*.md", "user/**/*.yaml"]
+
+[project.optional-dependencies]
+deepseek = ["langchain-deepseek>=1.0.0"]
+ashare = ["baostock>=0.8.8", "mootdx>=0.11"]
+dev = ["pytest>=7.0", "pytest-cov>=4.0"]

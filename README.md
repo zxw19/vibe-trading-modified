@@ -24,10 +24,19 @@
 
 ## 快速开始
 
-### 1. 环境准备
+### 1. 环境要求
+
+- Python 3.12+
+- Git
+
+### 2. 安装项目
 
 ```bash
-# Python 3.12+
+# 克隆仓库
+git clone https://github.com/zxw19/vibe-trading-modified.git
+cd vibe-trading-modified
+
+# 创建虚拟环境
 python -m venv vibe-env
 
 # Windows
@@ -36,11 +45,11 @@ vibe-env\Scripts\activate
 # Mac/Linux
 source vibe-env/bin/activate
 
-# 安装依赖
-pip install -r requirements.txt
+# 安装（自动处理所有依赖）
+pip install -e .
 ```
 
-### 2. 配置 LLM
+### 3. 配置 LLM
 
 复制 `.env.example` 为 `.env`，填入你的 LLM API Key：
 
@@ -53,7 +62,7 @@ DEEPSEEK_BASE_URL=https://api.deepseek.com
 
 支持的提供商：DeepSeek / OpenAI / OpenRouter / Gemini / Groq / Moonshot / Zhipu / Ollama
 
-### 3. 创建用户目录
+### 4. 安装用户技能
 
 ```bash
 # Windows
@@ -65,14 +74,14 @@ mkdir -p ~/.vibe-trading/skills/user
 cp -r skills/user/* ~/.vibe-trading/skills/user/
 ```
 
-### 4. 启动
+### 5. 启动
 
 ```bash
 # 交互式对话（主入口）
-python -m cli
+vibe-trading
 
-# MCP 服务（可接入 Claude Desktop）
-python mcp_server.py
+# 或
+python -m cli
 
 # HTTP API 服务
 python api_server.py
